@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B20C32232F5992CB00137709 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B20C32222F5992CB00137709 /* Assets.xcassets */; };
 		B20C32252F5992E000137709 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B20C32242F5992E000137709 /* Preview Assets.xcassets */; };
+		B20C32272F59943D00137709 /* NotesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20C32262F59943D00137709 /* NotesListView.swift */; };
 		B2AC67082F2D26FA00D7C511 /* Career_ProApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2AC67072F2D26FA00D7C511 /* Career_ProApp.swift */; };
 		B2AC67162F2D272500D7C511 /* JobApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2AC67152F2D272500D7C511 /* JobApplication.swift */; };
 		B2AC671A2F2D3D5F00D7C511 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2AC67192F2D3D5F00D7C511 /* Note.swift */; };
@@ -16,7 +17,6 @@
 		B2AC67282F2D416100D7C511 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2AC67272F2D416100D7C511 /* HomeView.swift */; };
 		B2AC672C2F2D419100D7C511 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2AC672B2F2D419100D7C511 /* SettingsView.swift */; };
 		B2AC672E2F2D433B00D7C511 /* AddJobView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2AC672D2F2D433B00D7C511 /* AddJobView.swift */; };
-		B2AC67322F2D43D300D7C511 /* NotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2AC67312F2D43D300D7C511 /* NotesView.swift */; };
 		B2AC67342F2D453100D7C511 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2AC67332F2D453100D7C511 /* NotificationManager.swift */; };
 		B2AC67382F2D458700D7C511 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2AC67372F2D458700D7C511 /* StatsView.swift */; };
 /* End PBXBuildFile section */
@@ -24,6 +24,7 @@
 /* Begin PBXFileReference section */
 		B20C32222F5992CB00137709 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B20C32242F5992E000137709 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		B20C32262F59943D00137709 /* NotesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesListView.swift; sourceTree = "<group>"; };
 		B2AC67042F2D26FA00D7C511 /* Career Pro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Career Pro.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2AC67072F2D26FA00D7C511 /* Career_ProApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Career_ProApp.swift; sourceTree = "<group>"; };
 		B2AC67152F2D272500D7C511 /* JobApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobApplication.swift; sourceTree = "<group>"; };
@@ -32,7 +33,6 @@
 		B2AC67272F2D416100D7C511 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		B2AC672B2F2D419100D7C511 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		B2AC672D2F2D433B00D7C511 /* AddJobView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddJobView.swift; sourceTree = "<group>"; };
-		B2AC67312F2D43D300D7C511 /* NotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesView.swift; sourceTree = "<group>"; };
 		B2AC67332F2D453100D7C511 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		B2AC67372F2D458700D7C511 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -51,6 +51,7 @@
 		B2AC66FB2F2D26FA00D7C511 = {
 			isa = PBXGroup;
 			children = (
+				B2AC67072F2D26FA00D7C511 /* Career_ProApp.swift */,
 				B2AC67062F2D26FA00D7C511 /* Career Pro */,
 				B2AC67052F2D26FA00D7C511 /* Products */,
 			);
@@ -67,17 +68,16 @@
 		B2AC67062F2D26FA00D7C511 /* Career Pro */ = {
 			isa = PBXGroup;
 			children = (
-				B2AC670D2F2D26FC00D7C511 /* Preview Content */,
 				B2AC67152F2D272500D7C511 /* JobApplication.swift */,
-				B2AC67312F2D43D300D7C511 /* NotesView.swift */,
 				B2AC67192F2D3D5F00D7C511 /* Note.swift */,
 				B2AC672D2F2D433B00D7C511 /* AddJobView.swift */,
 				B2AC67372F2D458700D7C511 /* StatsView.swift */,
 				B2AC67332F2D453100D7C511 /* NotificationManager.swift */,
 				B2AC67272F2D416100D7C511 /* HomeView.swift */,
+				B20C32262F59943D00137709 /* NotesListView.swift */,
 				B2AC672B2F2D419100D7C511 /* SettingsView.swift */,
 				B2AC67252F2D412400D7C511 /* DataManager.swift */,
-				B2AC67072F2D26FA00D7C511 /* Career_ProApp.swift */,
+				B2AC670D2F2D26FC00D7C511 /* Preview Content */,
 				B20C32222F5992CB00137709 /* Assets.xcassets */,
 			);
 			path = "Career Pro";
@@ -163,11 +163,11 @@
 			files = (
 				B2AC67382F2D458700D7C511 /* StatsView.swift in Sources */,
 				B2AC671A2F2D3D5F00D7C511 /* Note.swift in Sources */,
-				B2AC67322F2D43D300D7C511 /* NotesView.swift in Sources */,
 				B2AC67262F2D412400D7C511 /* DataManager.swift in Sources */,
 				B2AC67342F2D453100D7C511 /* NotificationManager.swift in Sources */,
 				B2AC67282F2D416100D7C511 /* HomeView.swift in Sources */,
 				B2AC67162F2D272500D7C511 /* JobApplication.swift in Sources */,
+				B20C32272F59943D00137709 /* NotesListView.swift in Sources */,
 				B2AC672E2F2D433B00D7C511 /* AddJobView.swift in Sources */,
 				B2AC67082F2D26FA00D7C511 /* Career_ProApp.swift in Sources */,
 				B2AC672C2F2D419100D7C511 /* SettingsView.swift in Sources */,

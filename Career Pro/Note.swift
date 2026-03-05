@@ -4,20 +4,23 @@
 //
 
 import Foundation
+import SwiftData
 
-struct Note: Identifiable, Codable {
-    var id = UUID()
+@Model
+class Note {
+    var id: UUID
     var title: String
     var content: String
     var createdAt: Date
     var reminderDate: Date?
-    var hasReminder: Bool = false
+    var isReminderSet: Bool
 
-    init(title: String, content: String, reminderDate: Date? = nil) {
+    init(title: String, content: String) {
+        self.id = UUID()
         self.title = title
         self.content = content
         self.createdAt = Date()
-        self.reminderDate = reminderDate
-        self.hasReminder = reminderDate != nil
+        self.reminderDate = nil
+        self.isReminderSet = false
     }
 }

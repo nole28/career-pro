@@ -117,7 +117,7 @@ struct HomeView: View {
                 ToolbarItemGroup(placement: .bottomBar) {
                     HStack {
                         NavigationLink {
-                            NotesView()
+                            NotesListView()
                         } label: {
                             VStack {
                                 Image(systemName: "note.text")

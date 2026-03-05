@@ -22,7 +22,6 @@ struct JobApplication: Identifiable, Codable {
     var appliedDate: Date
     var nextStep: Date?
     var status: String
-    var notes: [Note] = []
     var isFavorite: Bool = false
 
     init(company: String, role: String, url: String = "", status: Status = .interested) {

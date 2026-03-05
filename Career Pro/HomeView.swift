@@ -2,23 +2,17 @@
 //  HomeView.swift
 //  Career Pro
 //
-//  Created by Novak Velimirovic on 30.1.26..
-//
+
 
 import SwiftUI
 
-/// Main screen displaying job applications with search, stats, and management features
 struct HomeView: View {
-    /// Shared data manager for loading and saving applications
     @StateObject private var dataManager = DataManager.shared
     
-    /// Controls visibility of the add job sheet
     @State private var showingAddSheet = false
     
-    /// Text input for searching through applications
     @State private var searchText = ""
     
-    /// Filters applications based on search text
     var filteredApps: [JobApplication] {
         if searchText.isEmpty { return dataManager.applications }
         return dataManager.applications.filter {
@@ -27,7 +21,6 @@ struct HomeView: View {
         }
     }
     
-    /// Calculates application statistics for display
     var stats: (total: Int, interviews: Int, offers: Int) {
         let total = dataManager.applications.count
         let interviews = dataManager.applications.filter { $0.status == Status.interview.rawValue }.count
@@ -40,7 +33,6 @@ struct HomeView: View {
     var body: some View {
         NavigationView {
             List {
-                // Statistics card showing quick overview
                 Section {
                     HStack(spacing: 20) {
                         VStack {
@@ -86,18 +78,15 @@ struct HomeView: View {
                 .listRowBackground(Color.clear)
                 .listRowInsets(EdgeInsets())
                 
-                // Main list of job applications
                 ForEach(filteredApps) { app in
                     JobRow(app: app)
                         .swipeActions {
-                            // Swipe to delete action
                             Button(role: .destructive) {
                                 dataManager.delete(app)
                             } label: {
                                 Label("Delete", systemImage: "trash")
                             }
                             
-                            // Swipe to toggle favorite
                             Button {
                                 dataManager.toggleFavorite(app)
                             } label: {
@@ -111,7 +100,6 @@ struct HomeView: View {
             .searchable(text: $searchText, prompt: "Search jobs...")
             .navigationTitle("Job Tracker")
             .toolbar {
-                // Settings button in top left
                 ToolbarItem(placement: .navigationBarLeading) {
                     NavigationLink {
                         SettingsView()
@@ -120,17 +108,14 @@ struct HomeView: View {
                     }
                 }
                 
-                // Add job button in top right
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: { showingAddSheet = true }) {
                         Image(systemName: "plus")
                     }
                 }
                 
-                // Bottom navigation bar
                 ToolbarItemGroup(placement: .bottomBar) {
                     HStack {
-                        // Notes section link
                         NavigationLink {
                             NotesView()
                         } label: {
@@ -144,7 +129,6 @@ struct HomeView: View {
                         
                         Spacer()
                         
-                        // Statistics section link
                         NavigationLink {
                             StatsView(applications: dataManager.applications)
                         } label: {
@@ -158,7 +142,6 @@ struct HomeView: View {
                         
                         Spacer()
                         
-                        // Quick add shortcut
                         Button(action: { showingAddSheet = true }) {
                             VStack {
                                 Image(systemName: "bolt.fill")
@@ -175,7 +158,6 @@ struct HomeView: View {
                 AddJobView()
             }
             .overlay {
-                // Empty state when no jobs exist
                 if dataManager.applications.isEmpty {
                     VStack {
                         Image(systemName: "briefcase")
@@ -197,15 +179,12 @@ struct HomeView: View {
     }
 }
 
-/// Individual row view for displaying a job application in the list
 struct JobRow: View {
-    /// The job application to display
     let app: JobApplication
     
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
             HStack {
-                // Company logo circle with first letter
                 ZStack {
                     Circle()
                         .fill(statusColor.opacity(0.2))
@@ -235,7 +214,6 @@ struct JobRow: View {
             }
             
             HStack {
-                // Status badge with colored background
                 Text(app.status)
                     .font(.caption)
                     .padding(.horizontal, 8)
@@ -246,7 +224,6 @@ struct JobRow: View {
                 
                 Spacer()
                 
-                // Application date
                 HStack(spacing: 4) {
                     Image(systemName: "calendar")
                         .font(.caption2)
@@ -255,7 +232,6 @@ struct JobRow: View {
                 }
                 .foregroundColor(.gray)
                 
-                // Follow-up date if set
                 if let nextStep = app.nextStep {
                     Spacer()
                     HStack(spacing: 4) {
@@ -271,7 +247,6 @@ struct JobRow: View {
         .padding(.vertical, 8)
     }
     
-    /// Returns color based on application status
     private var statusColor: Color {
         switch Status(rawValue: app.status) {
         case .interested: return .yellow

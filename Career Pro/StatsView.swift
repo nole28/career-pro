@@ -2,82 +2,69 @@
 //  StatsView.swift
 //  Career Pro
 //
-//  Created by Novak Velimirovic on 30.1.26..
-//
 
 import SwiftUI
 
-/// View displaying application statistics and progress metrics
 struct StatsView: View {
-    /// Job applications to analyze (passed from parent view)
     let applications: [JobApplication]
-    
+
+    private var interviewsCount: Int {
+        applications.filter { $0.status == Status.interview.rawValue }.count
+    }
+
+    private var offersCount: Int {
+        applications.filter {
+            $0.status == Status.offer.rawValue || $0.status == Status.accepted.rawValue
+        }.count
+    }
+
+    private var rejectionsCount: Int {
+        applications.filter { $0.status == Status.rejected.rawValue }.count
+    }
+
+    private var successRate: String {
+        guard applications.count > 0 else { return "0%" }
+        let rate = Double(offersCount) / Double(applications.count) * 100
+        return String(format: "%.1f%%", rate)
+    }
+
     var body: some View {
         NavigationView {
             List {
-                // Overview statistics section
                 Section("Overview") {
                     StatRow(title: "Total Applications", value: "\(applications.count)", icon: "briefcase", color: .blue)
                     StatRow(title: "Interviews", value: "\(interviewsCount)", icon: "message", color: .orange)
                     StatRow(title: "Offers", value: "\(offersCount)", icon: "gift", color: .green)
                     StatRow(title: "Rejections", value: "\(rejectionsCount)", icon: "xmark", color: .red)
                 }
+
+                Section("Performance") {
+                    StatRow(title: "Success Rate", value: successRate, icon: "chart.line.uptrend.xyaxis", color: .purple)
+                    StatRow(title: "Interview Rate", value: applications.count > 0 ? "\(Int(Double(interviewsCount) / Double(applications.count) * 100))%" : "0%", icon: "person.wave.2", color: .orange)
+                }
             }
             .navigationTitle("Statistics")
             .navigationBarTitleDisplayMode(.inline)
         }
     }
-    
-    /// Count of applications in interview stage
-    private var interviewsCount: Int {
-        applications.filter { $0.status == Status.interview.rawValue }.count
-    }
-    
-    /// Count of applications with offers or accepted status
-    private var offersCount: Int {
-        applications.filter {
-            $0.status == Status.offer.rawValue || $0.status == Status.accepted.rawValue
-        }.count
-    }
-    
-    /// Count of rejected applications
-    private var rejectionsCount: Int {
-        applications.filter { $0.status == Status.rejected.rawValue }.count
-    }
 }
 
-/// Reusable row component for displaying statistic items
 struct StatRow: View {
-    /// Title of the statistic
     let title: String
-    
-    /// Value to display
     let value: String
-    
-    /// SF Symbol icon name
     let icon: String
-    
-    /// Color for icon and value
     let color: Color
-    
+
     var body: some View {
         HStack {
-            // Icon with consistent spacing
             Image(systemName: icon)
                 .foregroundColor(color)
                 .frame(width: 30)
-            
-            // Statistic title
             Text(title)
-            
             Spacer()
-            
-            // Statistic value with emphasis
             Text(value)
                 .font(.headline)
                 .foregroundColor(color)
         }
     }
 }
-
-
